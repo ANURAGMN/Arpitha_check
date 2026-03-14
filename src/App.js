@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from "@react-three/fiber";
 
-function App() {
+function MemorySphere({ position }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <mesh position={position}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial color="orange" />
+    </mesh>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Canvas camera={{ position: [0, 0, 10] }}>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+
+      <MemorySphere position={[0, 0, 0]} />
+      <MemorySphere position={[0, -5, -10]} />
+      <MemorySphere position={[0, -10, -20]} />
+    </Canvas>
+  );
+}
