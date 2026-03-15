@@ -22,7 +22,7 @@ export default function YearView(){
 
       }))
 
-      const filtered = data.filter(m=>m.year == year)
+      const filtered = data.filter(m => m.year === Number(year))
 
       setMemories(filtered)
 
