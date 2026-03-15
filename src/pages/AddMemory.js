@@ -2,7 +2,7 @@ import { useState } from "react";
 import { db, storage } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { v4 as uuid } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 export default function AddMemory(){
 
@@ -17,7 +17,7 @@ export default function AddMemory(){
 
     if(image){
 
-      const imageRef = ref(storage,"memories/"+uuid());
+      const imageRef = ref(storage,"memories/"+uuidv4());
 
       await uploadBytes(imageRef,image);
 
