@@ -1,23 +1,33 @@
-import { Canvas } from "@react-three/fiber";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function MemorySphere({ position }) {
+import Home from "./pages/Home";
+import AddMemory from "./pages/AddMemory";
+import YearView from "./pages/YearView";
+import MemoryView from "./pages/MemoryView";
+
+import Navbar from "./components/Navbar";
+
+function App() {
+
   return (
-    <mesh position={position}>
-      <sphereGeometry args={[1, 32, 32]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
-  );
+
+    <BrowserRouter>
+
+      <Navbar/>
+
+      <Routes>
+
+        <Route path="/" element={<Home/>}/>
+        <Route path="/add" element={<AddMemory/>}/>
+        <Route path="/year/:year" element={<YearView/>}/>
+        <Route path="/memory/:id" element={<MemoryView/>}/>
+
+      </Routes>
+
+    </BrowserRouter>
+
+  )
+
 }
 
-export default function App() {
-  return (
-    <Canvas camera={{ position: [0, 0, 10] }}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-
-      <MemorySphere position={[0, 0, 0]} />
-      <MemorySphere position={[0, -5, -10]} />
-      <MemorySphere position={[0, -10, -20]} />
-    </Canvas>
-  );
-}
+export default App;
